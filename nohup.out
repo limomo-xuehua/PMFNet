@@ -1,0 +1,698 @@
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+WARNING:torch.distributed.run:*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0611 21:42:19.414176 32447 Module.cpp:513] Warning: Disabling benchmark mode for MIOpen is NOT supported. Overriding value to True (function operator())
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+W0611 21:42:19.416115 32448 Module.cpp:513] Warning: Disabling benchmark mode for MIOpen is NOT supported. Overriding value to True (function operator())
+I0611 21:42:19.576473 32447 ProcessGroupNCCL.cpp:500] [Rank 0] ProcessGroupNCCL initialized with following options:
+NCCL_ASYNC_ERROR_HANDLING: 1
+NCCL_BLOCKING_WAIT: 0
+TIMEOUT(ms): 1800000
+USE_HIGH_PRIORITY_STREAM: 0
+NCCL_DEBUG: UNSET
+I0611 21:42:19.576567 32485 ProcessGroupNCCL.cpp:601] [Rank 0] NCCL watchdog thread started!
+I0611 21:42:19.581787 32448 ProcessGroupNCCL.cpp:500] [Rank 1] ProcessGroupNCCL initialized with following options:
+NCCL_ASYNC_ERROR_HANDLING: 1
+NCCL_BLOCKING_WAIT: 0
+TIMEOUT(ms): 1800000
+USE_HIGH_PRIORITY_STREAM: 0
+NCCL_DEBUG: UNSET
+I0611 21:42:19.581871 32487 ProcessGroupNCCL.cpp:601] [Rank 1] NCCL watchdog thread started!
+script_name: tbsi_track.py  config_name: vitb_256_tbsi_32x1_1e4_lasher_15ep_sot.yamlscript_name: tbsi_track.py  config_name: vitb_256_tbsi_32x1_1e4_lasher_15ep_sot.yaml
+
+Random seeds are initialized.Random seeds are initialized.
+
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/helpers.py:7: FutureWarning: Importing from timm.models.helpers is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+New configuration is shown below.
+MODEL configuration: {'PRETRAIN_FILE': 'TBSITrack_SOT_Pretrained.pth.tar', 'EXTRA_MERGER': False, 'RETURN_INTER': False, 'RETURN_STAGES': [2, 5, 8, 11], 'BACKBONE': {'TYPE': 'vit_base_patch16_224_tbsi', 'STRIDE': 16, 'MID_PE': False, 'SEP_SEG': False, 'CAT_MODE': 'direct', 'MERGE_LAYER': 0, 'ADD_CLS_TOKEN': False, 'CLS_TOKEN_USE_MODE': 'ignore', 'CE_LOC': [], 'CE_KEEP_RATIO': [], 'CE_TEMPLATE_RANGE': 'ALL', 'TBSI_LOC': [3, 6, 9], 'RGB_ONLY': False, 'RGBT_UNSHARE': False}, 'HEAD': {'TYPE': 'CENTER', 'NUM_CHANNELS': 256}}
+
+
+TRAIN configuration: {'LR': 0.0001, 'WEIGHT_DECAY': 0.0001, 'EPOCH': 15, 'LR_DROP_EPOCH': 10, 'BATCH_SIZE': 32, 'NUM_WORKER': 8, 'OPTIMIZER': 'ADAMW', 'BACKBONE_MULTIPLIER': 0.1, 'GIOU_WEIGHT': 2.0, 'L1_WEIGHT': 5.0, 'FREEZE_LAYERS': [0], 'PRINT_INTERVAL': 50, 'VAL_EPOCH_INTERVAL': 10, 'GRAD_CLIP_NORM': 0.1, 'AMP': True, 'CE_START_EPOCH': 20, 'CE_WARM_EPOCH': 80, 'DROP_PATH_RATE': 0.1, 'TBSI_DROP_RATE': 0.0, 'TBSI_DROP_PATH': [0.0, 0.0, 0.0], 'SOT_PRETRAIN': True, 'SCHEDULER': {'TYPE': 'step', 'DECAY_RATE': 0.1}}
+
+
+DATA configuration: {'SAMPLER_MODE': 'causal', 'MEAN': [0.485, 0.456, 0.406, 0.449, 0.449, 0.449], 'STD': [0.229, 0.224, 0.225, 0.226, 0.226, 0.226], 'MAX_SAMPLE_INTERVAL': 200, 'TRAIN': {'DATASETS_NAME': ['LasHeR_train'], 'DATASETS_RATIO': [1], 'SAMPLE_PER_EPOCH': 60000}, 'VAL': {'DATASETS_NAME': ['LasHeR_test'], 'DATASETS_RATIO': [1], 'SAMPLE_PER_EPOCH': 10000}, 'SEARCH': {'SIZE': 256, 'FACTOR': 4.0, 'CENTER_JITTER': 3, 'SCALE_JITTER': 0.25, 'NUMBER': 1}, 'TEMPLATE': {'NUMBER': 1, 'SIZE': 128, 'FACTOR': 2.0, 'CENTER_JITTER': 0, 'SCALE_JITTER': 0}}
+
+
+TEST configuration: {'TEMPLATE_FACTOR': 2.0, 'TEMPLATE_SIZE': 128, 'SEARCH_FACTOR': 4.0, 'SEARCH_SIZE': 256, 'EPOCH': 15}
+
+
+sampler_mode causal
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/helpers.py:7: FutureWarning: Importing from timm.models.helpers is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+sampler_mode causal
+Load pretrained model from: TBSITrack_SOT_Pretrained.pth.tar
+Load pretrained model from: TBSITrack_SOT_Pretrained.pth.tar
+checkpoints will be saved to /home/hanpenghui/sxy/000/TBSI-main/output/vitb_256_tbsi_32x1_1e4_lasher_15ep_sot/checkpoints
+Learnable parameters are shown below for sot pretraining setting.
+module.backbone.cls_token
+module.backbone.pos_embed
+module.backbone.pos_embed_z
+module.backbone.pos_embed_x
+module.backbone.patch_embed.proj.weight
+module.backbone.patch_embed.proj.bias
+module.backbone.blocks.0.norm1.weight
+module.backbone.blocks.0.norm1.bias
+module.backbone.blocks.0.attn.qkv.weight
+module.backbone.blocks.0.attn.qkv.bias
+module.backbone.blocks.0.attn.proj.weight
+module.backbone.blocks.0.attn.proj.bias
+module.backbone.blocks.0.norm2.weight
+module.backbone.blocks.0.norm2.bias
+module.backbone.blocks.0.mlp.fc1.weight
+module.backbone.blocks.0.mlp.fc1.bias
+module.backbone.blocks.0.mlp.fc2.weight
+module.backbone.blocks.0.mlp.fc2.bias
+module.backbone.blocks.1.norm1.weight
+module.backbone.blocks.1.norm1.bias
+module.backbone.blocks.1.attn.qkv.weight
+module.backbone.blocks.1.attn.qkv.bias
+module.backbone.blocks.1.attn.proj.weight
+module.backbone.blocks.1.attn.proj.bias
+module.backbone.blocks.1.norm2.weight
+module.backbone.blocks.1.norm2.bias
+module.backbone.blocks.1.mlp.fc1.weight
+module.backbone.blocks.1.mlp.fc1.bias
+module.backbone.blocks.1.mlp.fc2.weight
+module.backbone.blocks.1.mlp.fc2.bias
+module.backbone.blocks.2.norm1.weight
+module.backbone.blocks.2.norm1.bias
+module.backbone.blocks.2.attn.qkv.weight
+module.backbone.blocks.2.attn.qkv.bias
+module.backbone.blocks.2.attn.proj.weight
+module.backbone.blocks.2.attn.proj.bias
+module.backbone.blocks.2.norm2.weight
+module.backbone.blocks.2.norm2.bias
+module.backbone.blocks.2.mlp.fc1.weight
+module.backbone.blocks.2.mlp.fc1.bias
+module.backbone.blocks.2.mlp.fc2.weight
+module.backbone.blocks.2.mlp.fc2.bias
+module.backbone.blocks.3.norm1.weight
+module.backbone.blocks.3.norm1.bias
+module.backbone.blocks.3.attn.qkv.weight
+module.backbone.blocks.3.attn.qkv.bias
+module.backbone.blocks.3.attn.proj.weight
+module.backbone.blocks.3.attn.proj.bias
+module.backbone.blocks.3.norm2.weight
+module.backbone.blocks.3.norm2.bias
+module.backbone.blocks.3.mlp.fc1.weight
+module.backbone.blocks.3.mlp.fc1.bias
+module.backbone.blocks.3.mlp.fc2.weight
+module.backbone.blocks.3.mlp.fc2.bias
+module.backbone.blocks.4.norm1.weight
+module.backbone.blocks.4.norm1.bias
+module.backbone.blocks.4.attn.qkv.weight
+module.backbone.blocks.4.attn.qkv.bias
+module.backbone.blocks.4.attn.proj.weight
+module.backbone.blocks.4.attn.proj.bias
+module.backbone.blocks.4.norm2.weight
+module.backbone.blocks.4.norm2.bias
+module.backbone.blocks.4.mlp.fc1.weight
+module.backbone.blocks.4.mlp.fc1.bias
+module.backbone.blocks.4.mlp.fc2.weight
+module.backbone.blocks.4.mlp.fc2.bias
+module.backbone.blocks.5.norm1.weight
+module.backbone.blocks.5.norm1.bias
+module.backbone.blocks.5.attn.qkv.weight
+module.backbone.blocks.5.attn.qkv.bias
+module.backbone.blocks.5.attn.proj.weight
+module.backbone.blocks.5.attn.proj.bias
+module.backbone.blocks.5.norm2.weight
+module.backbone.blocks.5.norm2.bias
+module.backbone.blocks.5.mlp.fc1.weight
+module.backbone.blocks.5.mlp.fc1.bias
+module.backbone.blocks.5.mlp.fc2.weight
+module.backbone.blocks.5.mlp.fc2.bias
+module.backbone.blocks.6.norm1.weight
+module.backbone.blocks.6.norm1.bias
+module.backbone.blocks.6.attn.qkv.weight
+module.backbone.blocks.6.attn.qkv.bias
+module.backbone.blocks.6.attn.proj.weight
+module.backbone.blocks.6.attn.proj.bias
+module.backbone.blocks.6.norm2.weight
+module.backbone.blocks.6.norm2.bias
+module.backbone.blocks.6.mlp.fc1.weight
+module.backbone.blocks.6.mlp.fc1.bias
+module.backbone.blocks.6.mlp.fc2.weight
+module.backbone.blocks.6.mlp.fc2.bias
+module.backbone.blocks.7.norm1.weight
+module.backbone.blocks.7.norm1.bias
+module.backbone.blocks.7.attn.qkv.weight
+module.backbone.blocks.7.attn.qkv.bias
+module.backbone.blocks.7.attn.proj.weight
+module.backbone.blocks.7.attn.proj.bias
+module.backbone.blocks.7.norm2.weight
+module.backbone.blocks.7.norm2.bias
+module.backbone.blocks.7.mlp.fc1.weight
+module.backbone.blocks.7.mlp.fc1.bias
+module.backbone.blocks.7.mlp.fc2.weight
+module.backbone.blocks.7.mlp.fc2.bias
+module.backbone.blocks.8.norm1.weight
+module.backbone.blocks.8.norm1.bias
+module.backbone.blocks.8.attn.qkv.weight
+module.backbone.blocks.8.attn.qkv.bias
+module.backbone.blocks.8.attn.proj.weight
+module.backbone.blocks.8.attn.proj.bias
+module.backbone.blocks.8.norm2.weight
+module.backbone.blocks.8.norm2.bias
+module.backbone.blocks.8.mlp.fc1.weight
+module.backbone.blocks.8.mlp.fc1.bias
+module.backbone.blocks.8.mlp.fc2.weight
+module.backbone.blocks.8.mlp.fc2.bias
+module.backbone.blocks.9.norm1.weight
+module.backbone.blocks.9.norm1.bias
+module.backbone.blocks.9.attn.qkv.weight
+module.backbone.blocks.9.attn.qkv.bias
+module.backbone.blocks.9.attn.proj.weight
+module.backbone.blocks.9.attn.proj.bias
+module.backbone.blocks.9.norm2.weight
+module.backbone.blocks.9.norm2.bias
+module.backbone.blocks.9.mlp.fc1.weight
+module.backbone.blocks.9.mlp.fc1.bias
+module.backbone.blocks.9.mlp.fc2.weight
+module.backbone.blocks.9.mlp.fc2.bias
+module.backbone.blocks.10.norm1.weight
+module.backbone.blocks.10.norm1.bias
+module.backbone.blocks.10.attn.qkv.weight
+module.backbone.blocks.10.attn.qkv.bias
+module.backbone.blocks.10.attn.proj.weight
+module.backbone.blocks.10.attn.proj.bias
+module.backbone.blocks.10.norm2.weight
+module.backbone.blocks.10.norm2.bias
+module.backbone.blocks.10.mlp.fc1.weight
+module.backbone.blocks.10.mlp.fc1.bias
+module.backbone.blocks.10.mlp.fc2.weight
+module.backbone.blocks.10.mlp.fc2.bias
+module.backbone.blocks.11.norm1.weight
+module.backbone.blocks.11.norm1.bias
+module.backbone.blocks.11.attn.qkv.weight
+module.backbone.blocks.11.attn.qkv.bias
+module.backbone.blocks.11.attn.proj.weight
+module.backbone.blocks.11.attn.proj.bias
+module.backbone.blocks.11.norm2.weight
+module.backbone.blocks.11.norm2.bias
+module.backbone.blocks.11.mlp.fc1.weight
+module.backbone.blocks.11.mlp.fc1.bias
+module.backbone.blocks.11.mlp.fc2.weight
+module.backbone.blocks.11.mlp.fc2.bias
+module.backbone.norm.weight
+module.backbone.norm.bias
+module.backbone.tbsi_layers.0.t_fusion.0.weight
+module.backbone.tbsi_layers.0.t_fusion.0.bias
+module.backbone.tbsi_layers.0.t_fusion.1.weight
+module.backbone.tbsi_layers.0.t_fusion.1.bias
+module.backbone.tbsi_layers.0.ca_s2t_v2f.norm1.weight
+module.backbone.tbsi_layers.0.ca_s2t_v2f.norm1.bias
+module.backbone.tbsi_layers.0.ca_s2t_v2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_s2t_v2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_s2t_v2f.norm2.weight
+module.backbone.tbsi_layers.0.ca_s2t_v2f.norm2.bias
+module.backbone.tbsi_layers.0.ca_s2t_v2f.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_s2t_v2f.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_s2t_v2f.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_s2t_v2f.mlp.fc2.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2i.norm1.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2i.norm1.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2i.norm2.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2i.norm2.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2i.mlp.fc2.bias
+module.backbone.tbsi_layers.0.ca_s2t_i2f.norm1.weight
+module.backbone.tbsi_layers.0.ca_s2t_i2f.norm1.bias
+module.backbone.tbsi_layers.0.ca_s2t_i2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_s2t_i2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_s2t_i2f.norm2.weight
+module.backbone.tbsi_layers.0.ca_s2t_i2f.norm2.bias
+module.backbone.tbsi_layers.0.ca_s2t_i2f.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_s2t_i2f.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_s2t_i2f.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_s2t_i2f.mlp.fc2.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2v.norm1.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2v.norm1.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2v.norm2.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2v.norm2.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_t2s_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_t2s_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2v.norm1.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2v.norm1.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2v.norm2.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2v.norm2.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2i.norm1.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2i.norm1.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2i.norm2.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2i.norm2.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.0.ca_t2t_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.0.ca_t2t_f2i.mlp.fc2.bias
+module.backbone.tbsi_layers.1.t_fusion.0.weight
+module.backbone.tbsi_layers.1.t_fusion.0.bias
+module.backbone.tbsi_layers.1.t_fusion.1.weight
+module.backbone.tbsi_layers.1.t_fusion.1.bias
+module.backbone.tbsi_layers.1.ca_s2t_v2f.norm1.weight
+module.backbone.tbsi_layers.1.ca_s2t_v2f.norm1.bias
+module.backbone.tbsi_layers.1.ca_s2t_v2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_s2t_v2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_s2t_v2f.norm2.weight
+module.backbone.tbsi_layers.1.ca_s2t_v2f.norm2.bias
+module.backbone.tbsi_layers.1.ca_s2t_v2f.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_s2t_v2f.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_s2t_v2f.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_s2t_v2f.mlp.fc2.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2i.norm1.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2i.norm1.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2i.norm2.weightNo matching checkpoint file found
+
+module.backbone.tbsi_layers.1.ca_t2s_f2i.norm2.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2i.mlp.fc2.bias
+module.backbone.tbsi_layers.1.ca_s2t_i2f.norm1.weight
+module.backbone.tbsi_layers.1.ca_s2t_i2f.norm1.bias
+module.backbone.tbsi_layers.1.ca_s2t_i2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_s2t_i2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_s2t_i2f.norm2.weight
+module.backbone.tbsi_layers.1.ca_s2t_i2f.norm2.bias
+module.backbone.tbsi_layers.1.ca_s2t_i2f.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_s2t_i2f.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_s2t_i2f.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_s2t_i2f.mlp.fc2.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2v.norm1.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2v.norm1.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2v.norm2.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2v.norm2.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_t2s_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_t2s_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2v.norm1.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2v.norm1.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2v.norm2.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2v.norm2.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2i.norm1.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2i.norm1.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2i.norm2.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2i.norm2.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.1.ca_t2t_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.1.ca_t2t_f2i.mlp.fc2.bias
+module.backbone.tbsi_layers.2.t_fusion.0.weight
+module.backbone.tbsi_layers.2.t_fusion.0.bias
+module.backbone.tbsi_layers.2.t_fusion.1.weight
+module.backbone.tbsi_layers.2.t_fusion.1.bias
+module.backbone.tbsi_layers.2.ca_s2t_v2f.norm1.weight
+module.backbone.tbsi_layers.2.ca_s2t_v2f.norm1.bias
+module.backbone.tbsi_layers.2.ca_s2t_v2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_s2t_v2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_s2t_v2f.norm2.weight
+module.backbone.tbsi_layers.2.ca_s2t_v2f.norm2.bias
+module.backbone.tbsi_layers.2.ca_s2t_v2f.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_s2t_v2f.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_s2t_v2f.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_s2t_v2f.mlp.fc2.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2i.norm1.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2i.norm1.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2i.norm2.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2i.norm2.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2i.mlp.fc2.bias
+module.backbone.tbsi_layers.2.ca_s2t_i2f.norm1.weight
+module.backbone.tbsi_layers.2.ca_s2t_i2f.norm1.bias
+module.backbone.tbsi_layers.2.ca_s2t_i2f.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_s2t_i2f.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_s2t_i2f.norm2.weight
+module.backbone.tbsi_layers.2.ca_s2t_i2f.norm2.bias
+module.backbone.tbsi_layers.2.ca_s2t_i2f.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_s2t_i2f.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_s2t_i2f.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_s2t_i2f.mlp.fc2.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2v.norm1.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2v.norm1.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2v.norm2.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2v.norm2.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_t2s_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_t2s_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2v.norm1.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2v.norm1.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2v.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2v.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2v.norm2.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2v.norm2.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2v.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2v.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2v.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2v.mlp.fc2.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2i.norm1.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2i.norm1.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2i.attn_reshape.proj.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2i.attn_reshape.proj.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2i.norm2.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2i.norm2.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2i.mlp.fc1.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2i.mlp.fc1.bias
+module.backbone.tbsi_layers.2.ca_t2t_f2i.mlp.fc2.weight
+module.backbone.tbsi_layers.2.ca_t2t_f2i.mlp.fc2.bias
+module.tbsi_fuse_search.0.weight
+module.tbsi_fuse_search.0.bias
+module.tbsi_fuse_search.1.weight
+module.tbsi_fuse_search.1.bias
+module.box_head.conv1_ctr.0.weight
+module.box_head.conv1_ctr.0.bias
+module.box_head.conv1_ctr.1.weight
+module.box_head.conv1_ctr.1.bias
+module.box_head.conv2_ctr.0.weight
+module.box_head.conv2_ctr.0.bias
+module.box_head.conv2_ctr.1.weight
+module.box_head.conv2_ctr.1.bias
+module.box_head.conv3_ctr.0.weight
+module.box_head.conv3_ctr.0.bias
+module.box_head.conv3_ctr.1.weight
+module.box_head.conv3_ctr.1.bias
+module.box_head.conv4_ctr.0.weight
+module.box_head.conv4_ctr.0.bias
+module.box_head.conv4_ctr.1.weight
+module.box_head.conv4_ctr.1.bias
+module.box_head.conv5_ctr.weight
+module.box_head.conv5_ctr.bias
+module.box_head.conv1_offset.0.weight
+module.box_head.conv1_offset.0.bias
+module.box_head.conv1_offset.1.weight
+module.box_head.conv1_offset.1.bias
+module.box_head.conv2_offset.0.weight
+module.box_head.conv2_offset.0.bias
+module.box_head.conv2_offset.1.weight
+module.box_head.conv2_offset.1.bias
+module.box_head.conv3_offset.0.weight
+module.box_head.conv3_offset.0.bias
+module.box_head.conv3_offset.1.weight
+module.box_head.conv3_offset.1.bias
+module.box_head.conv4_offset.0.weight
+module.box_head.conv4_offset.0.bias
+module.box_head.conv4_offset.1.weight
+module.box_head.conv4_offset.1.bias
+module.box_head.conv5_offset.weight
+module.box_head.conv5_offset.bias
+module.box_head.conv1_size.0.weight
+module.box_head.conv1_size.0.bias
+module.box_head.conv1_size.1.weight
+module.box_head.conv1_size.1.bias
+module.box_head.conv2_size.0.weight
+module.box_head.conv2_size.0.bias
+module.box_head.conv2_size.1.weight
+module.box_head.conv2_size.1.bias
+module.box_head.conv3_size.0.weight
+module.box_head.conv3_size.0.bias
+module.box_head.conv3_size.1.weight
+module.box_head.conv3_size.1.bias
+module.box_head.conv4_size.0.weight
+module.box_head.conv4_size.0.bias
+module.box_head.conv4_size.1.weight
+module.box_head.conv4_size.1.bias
+module.box_head.conv5_size.weight
+module.box_head.conv5_size.bias
+checkpoints will be saved to /home/hanpenghui/sxy/000/TBSI-main/output/vitb_256_tbsi_32x1_1e4_lasher_15ep_sot/checkpoints
+No matching checkpoint file found
+/home/hanpenghui/sxy/000/TBSI-main/lib/train/../../lib/models/layers/head.py:144: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  idx_y = idx // self.feat_sz
+/home/hanpenghui/sxy/000/TBSI-main/lib/train/../../lib/models/layers/head.py:144: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  idx_y = idx // self.feat_sz
+[train: 1, 50 / 937] FPS: 15.6 (20.2)  ,  DataTime: 0.057 (0.047)  ,  ForwardTime: 1.952  ,  TotalTime: 2.056  ,  Loss/total: 3.32026  ,  Loss/giou: 0.57789  ,  Loss/l1: 0.08514  ,  Loss/location: 1.73878  ,  IoU: 0.52302
+[train: 1, 50 / 937] FPS: 15.6 (20.2)  ,  DataTime: 0.059 (0.049)  ,  ForwardTime: 1.948  ,  TotalTime: 2.055  ,  Loss/total: 3.35507  ,  Loss/giou: 0.57229  ,  Loss/l1: 0.08673  ,  Loss/location: 1.77683  ,  IoU: 0.52989
+[train: 1, 100 / 937] FPS: 17.4 (20.1)  ,  DataTime: 0.033 (0.050)  ,  ForwardTime: 1.754  ,  TotalTime: 1.837  ,  Loss/total: 2.49324  ,  Loss/giou: 0.48271  ,  Loss/l1: 0.06535  ,  Loss/location: 1.20106  ,  IoU: 0.59379
+[train: 1, 100 / 937] FPS: 17.4 (19.4)  ,  DataTime: 0.032 (0.047)  ,  ForwardTime: 1.759  ,  TotalTime: 1.838  ,  Loss/total: 2.43781  ,  Loss/giou: 0.47919  ,  Loss/l1: 0.06294  ,  Loss/location: 1.16476  ,  IoU: 0.59382
+[train: 1, 150 / 937] FPS: 18.2 (19.9)  ,  DataTime: 0.024 (0.048)  ,  ForwardTime: 1.691  ,  TotalTime: 1.763  ,  Loss/total: 2.13866  ,  Loss/giou: 0.44198  ,  Loss/l1: 0.05500  ,  Loss/location: 0.97969  ,  IoU: 0.62095
+[train: 1, 150 / 937] FPS: 18.2 (19.6)  ,  DataTime: 0.024 (0.049)  ,  ForwardTime: 1.689  ,  TotalTime: 1.763  ,  Loss/total: 2.14367  ,  Loss/giou: 0.43859  ,  Loss/l1: 0.05557  ,  Loss/location: 0.98863  ,  IoU: 0.62519
+[train: 1, 200 / 937] FPS: 18.5 (19.9)  ,  DataTime: 0.021 (0.051)  ,  ForwardTime: 1.658  ,  TotalTime: 1.730  ,  Loss/total: 1.96863  ,  Loss/giou: 0.41604  ,  Loss/l1: 0.05071  ,  Loss/location: 0.88301  ,  IoU: 0.64188
+[train: 1, 200 / 937] FPS: 18.5 (19.9)  ,  DataTime: 0.020 (0.050)  ,  ForwardTime: 1.661  ,  TotalTime: 1.730  ,  Loss/total: 1.96974  ,  Loss/giou: 0.42165  ,  Loss/l1: 0.05086  ,  Loss/location: 0.87216  ,  IoU: 0.63616
+[train: 1, 250 / 937] FPS: 18.7 (19.5)  ,  DataTime: 0.017 (0.051)  ,  ForwardTime: 1.642  ,  TotalTime: 1.711  ,  Loss/total: 1.86507  ,  Loss/giou: 0.40774  ,  Loss/l1: 0.04824  ,  Loss/location: 0.80839  ,  IoU: 0.64682
+[train: 1, 250 / 937] FPS: 18.7 (19.5)  ,  DataTime: 0.018 (0.052)  ,  ForwardTime: 1.641  ,  TotalTime: 1.710  ,  Loss/total: 1.86123  ,  Loss/giou: 0.40285  ,  Loss/l1: 0.04793  ,  Loss/location: 0.81588  ,  IoU: 0.65153
+[train: 1, 300 / 937] FPS: 18.9 (20.0)  ,  DataTime: 0.016 (0.051)  ,  ForwardTime: 1.628  ,  TotalTime: 1.695  ,  Loss/total: 1.78099  ,  Loss/giou: 0.39161  ,  Loss/l1: 0.04550  ,  Loss/location: 0.77029  ,  IoU: 0.65948
+[train: 1, 300 / 937] FPS: 18.9 (19.9)  ,  DataTime: 0.016 (0.051)  ,  ForwardTime: 1.628  ,  TotalTime: 1.695  ,  Loss/total: 1.79044  ,  Loss/giou: 0.39657  ,  Loss/l1: 0.04615  ,  Loss/location: 0.76655  ,  IoU: 0.65531
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000020.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 1, 350 / 937] FPS: 19.0 (19.8)  ,  DataTime: 0.015 (0.052)  ,  ForwardTime: 1.619  ,  TotalTime: 1.686  ,  Loss/total: 1.73216  ,  Loss/giou: 0.38769  ,  Loss/l1: 0.04460  ,  Loss/location: 0.73377  ,  IoU: 0.66219
+[train: 1, 350 / 937] FPS: 19.0 (19.7)  ,  DataTime: 0.015 (0.051)  ,  ForwardTime: 1.619  ,  TotalTime: 1.686  ,  Loss/total: 1.73556  ,  Loss/giou: 0.38660  ,  Loss/l1: 0.04442  ,  Loss/location: 0.74026  ,  IoU: 0.66331
+[train: 1, 400 / 937] FPS: 19.1 (20.0)  ,  DataTime: 0.014 (0.052)  ,  ForwardTime: 1.612  ,  TotalTime: 1.677  ,  Loss/total: 1.69151  ,  Loss/giou: 0.38218  ,  Loss/l1: 0.04345  ,  Loss/location: 0.70988  ,  IoU: 0.66611
+[train: 1, 400 / 937] FPS: 19.1 (20.0)  ,  DataTime: 0.014 (0.052)  ,  ForwardTime: 1.612  ,  TotalTime: 1.677  ,  Loss/total: 1.69186  ,  Loss/giou: 0.38080  ,  Loss/l1: 0.04340  ,  Loss/location: 0.71327  ,  IoU: 0.66775
+[train: 1, 450 / 937] FPS: 19.1 (19.9)  ,  DataTime: 0.013 (0.052)  ,  ForwardTime: 1.606  ,  TotalTime: 1.672  ,  Loss/total: 1.64859  ,  Loss/giou: 0.37385  ,  Loss/l1: 0.04218  ,  Loss/location: 0.68999  ,  IoU: 0.67293
+[train: 1, 450 / 937] FPS: 19.1 (19.9)  ,  DataTime: 0.013 (0.052)  ,  ForwardTime: 1.606  ,  TotalTime: 1.672  ,  Loss/total: 1.65561  ,  Loss/giou: 0.37712  ,  Loss/l1: 0.04266  ,  Loss/location: 0.68807  ,  IoU: 0.67030
+[train: 1, 500 / 937] FPS: 19.2 (19.9)  ,  DataTime: 0.013 (0.052)  ,  ForwardTime: 1.602  ,  TotalTime: 1.667  ,  Loss/total: 1.61953  ,  Loss/giou: 0.36971  ,  Loss/l1: 0.04133  ,  Loss/location: 0.67347  ,  IoU: 0.67605
+[train: 1, 500 / 937] FPS: 19.2 (19.2)  ,  DataTime: 0.012 (0.053)  ,  ForwardTime: 1.602  ,  TotalTime: 1.667  ,  Loss/total: 1.62453  ,  Loss/giou: 0.37219  ,  Loss/l1: 0.04176  ,  Loss/location: 0.67136  ,  IoU: 0.67395
+[train: 1, 550 / 937] FPS: 19.2 (19.5)  ,  DataTime: 0.012 (0.053)  ,  ForwardTime: 1.599  ,  TotalTime: 1.664  ,  Loss/total: 1.60129  ,  Loss/giou: 0.36879  ,  Loss/l1: 0.04111  ,  Loss/location: 0.65816  ,  IoU: 0.67656
+[train: 1, 550 / 937] FPS: 19.2 (19.4)  ,  DataTime: 0.012 (0.052)  ,  ForwardTime: 1.599  ,  TotalTime: 1.664  ,  Loss/total: 1.59689  ,  Loss/giou: 0.36675  ,  Loss/l1: 0.04077  ,  Loss/location: 0.65953  ,  IoU: 0.67834
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000020.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 1, 600 / 937] FPS: 19.3 (20.0)  ,  DataTime: 0.012 (0.053)  ,  ForwardTime: 1.596  ,  TotalTime: 1.660  ,  Loss/total: 1.57733  ,  Loss/giou: 0.36464  ,  Loss/l1: 0.04034  ,  Loss/location: 0.64633  ,  IoU: 0.67961
+[train: 1, 600 / 937] FPS: 19.3 (19.4)  ,  DataTime: 0.012 (0.053)  ,  ForwardTime: 1.596  ,  TotalTime: 1.660  ,  Loss/total: 1.57571  ,  Loss/giou: 0.36378  ,  Loss/l1: 0.04027  ,  Loss/location: 0.64677  ,  IoU: 0.68071
+[train: 1, 650 / 937] FPS: 19.3 (20.0)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.594  ,  TotalTime: 1.658  ,  Loss/total: 1.56042  ,  Loss/giou: 0.36199  ,  Loss/l1: 0.03985  ,  Loss/location: 0.63718  ,  IoU: 0.68161
+[train: 1, 650 / 937] FPS: 19.3 (19.1)  ,  DataTime: 0.012 (0.053)  ,  ForwardTime: 1.594  ,  TotalTime: 1.658  ,  Loss/total: 1.55751  ,  Loss/giou: 0.36117  ,  Loss/l1: 0.03978  ,  Loss/location: 0.63625  ,  IoU: 0.68271
+[train: 1, 700 / 937] FPS: 19.3 (19.2)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.592  ,  TotalTime: 1.656  ,  Loss/total: 1.54408  ,  Loss/giou: 0.35924  ,  Loss/l1: 0.03933  ,  Loss/location: 0.62895  ,  IoU: 0.68361
+[train: 1, 700 / 937] FPS: 19.3 (18.9)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.591  ,  TotalTime: 1.656  ,  Loss/total: 1.53733  ,  Loss/giou: 0.35778  ,  Loss/l1: 0.03923  ,  Loss/location: 0.62563  ,  IoU: 0.68549
+[train: 1, 750 / 937] FPS: 19.3 (20.1)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.590  ,  TotalTime: 1.654  ,  Loss/total: 1.52712  ,  Loss/giou: 0.35642  ,  Loss/l1: 0.03879  ,  Loss/location: 0.62030  ,  IoU: 0.68564
+[train: 1, 750 / 937] FPS: 19.3 (19.8)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.590  ,  TotalTime: 1.654  ,  Loss/total: 1.51817  ,  Loss/giou: 0.35410  ,  Loss/l1: 0.03869  ,  Loss/location: 0.61653  ,  IoU: 0.68841
+[train: 1, 800 / 937] FPS: 19.4 (19.9)  ,  DataTime: 0.010 (0.053)  ,  ForwardTime: 1.588  ,  TotalTime: 1.652  ,  Loss/total: 1.51341  ,  Loss/giou: 0.35421  ,  Loss/l1: 0.03847  ,  Loss/location: 0.61265  ,  IoU: 0.68749
+[train: 1, 800 / 937] FPS: 19.4 (19.6)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.587  ,  TotalTime: 1.652  ,  Loss/total: 1.50392  ,  Loss/giou: 0.35179  ,  Loss/l1: 0.03833  ,  Loss/location: 0.60867  ,  IoU: 0.69019
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000020.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 1, 850 / 937] FPS: 19.4 (19.7)  ,  DataTime: 0.010 (0.053)  ,  ForwardTime: 1.587  ,  TotalTime: 1.650  ,  Loss/total: 1.49920  ,  Loss/giou: 0.35166  ,  Loss/l1: 0.03805  ,  Loss/location: 0.60562  ,  IoU: 0.68948
+[train: 1, 850 / 937] FPS: 19.4 (19.4)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.586  ,  TotalTime: 1.650  ,  Loss/total: 1.49281  ,  Loss/giou: 0.34978  ,  Loss/l1: 0.03797  ,  Loss/location: 0.60338  ,  IoU: 0.69170
+[train: 1, 900 / 937] FPS: 19.4 (19.9)  ,  DataTime: 0.010 (0.053)  ,  ForwardTime: 1.585  ,  TotalTime: 1.649  ,  Loss/total: 1.48834  ,  Loss/giou: 0.34989  ,  Loss/l1: 0.03778  ,  Loss/location: 0.59969  ,  IoU: 0.69096
+[train: 1, 900 / 937] FPS: 19.4 (19.2)  ,  DataTime: 0.011 (0.053)  ,  ForwardTime: 1.585  ,  TotalTime: 1.649  ,  Loss/total: 1.47724  ,  Loss/giou: 0.34656  ,  Loss/l1: 0.03747  ,  Loss/location: 0.59678  ,  IoU: 0.69416
+[train: 1, 937 / 937] FPS: 19.4 (19.4)  ,  DataTime: 0.010 (0.053)  ,  ForwardTime: 1.584  ,  TotalTime: 1.648  ,  Loss/total: 1.46867  ,  Loss/giou: 0.34506  ,  Loss/l1: 0.03720  ,  Loss/location: 0.59253  ,  IoU: 0.69533
+[train: 1, 937 / 937] FPS: 19.4 (19.5)  ,  DataTime: 0.010 (0.054)  ,  ForwardTime: 1.584  ,  TotalTime: 1.648  ,  Loss/total: 1.48046  ,  Loss/giou: 0.34868  ,  Loss/l1: 0.03755  ,  Loss/location: 0.59533  ,  IoU: 0.69180
+Epoch Time: 0:25:44.163584
+Avg Data Time: 0.01042
+Avg GPU Trans Time: 0.05342
+Avg Forward Time: 1.58415
+Epoch Time: 0:25:44.189831
+Avg Data Time: 0.00999
+Avg GPU Trans Time: 0.05355
+Avg Forward Time: 1.58447
+[train: 2, 50 / 937] FPS: 19.0 (20.2)  ,  DataTime: 0.062 (0.056)  ,  ForwardTime: 1.565  ,  TotalTime: 1.684  ,  Loss/total: 1.27878  ,  Loss/giou: 0.31250  ,  Loss/l1: 0.03172  ,  Loss/location: 0.49517  ,  IoU: 0.72159
+[train: 2, 50 / 937] FPS: 19.0 (20.1)  ,  DataTime: 0.064 (0.054)  ,  ForwardTime: 1.565  ,  TotalTime: 1.684  ,  Loss/total: 1.28370  ,  Loss/giou: 0.31549  ,  Loss/l1: 0.03312  ,  Loss/location: 0.48713  ,  IoU: 0.71923
+[train: 2, 100 / 937] FPS: 19.4 (19.7)  ,  DataTime: 0.036 (0.052)  ,  ForwardTime: 1.566  ,  TotalTime: 1.654  ,  Loss/total: 1.26770  ,  Loss/giou: 0.31275  ,  Loss/l1: 0.03242  ,  Loss/location: 0.48011  ,  IoU: 0.72110
+[train: 2, 100 / 937] FPS: 19.3 (19.6)  ,  DataTime: 0.035 (0.055)  ,  ForwardTime: 1.564  ,  TotalTime: 1.654  ,  Loss/total: 1.25592  ,  Loss/giou: 0.30687  ,  Loss/l1: 0.03081  ,  Loss/location: 0.48810  ,  IoU: 0.72598
+[train: 2, 150 / 937] FPS: 19.5 (20.0)  ,  DataTime: 0.026 (0.054)  ,  ForwardTime: 1.564  ,  TotalTime: 1.644  ,  Loss/total: 1.24211  ,  Loss/giou: 0.30352  ,  Loss/l1: 0.03016  ,  Loss/location: 0.48427  ,  IoU: 0.72806
+[train: 2, 150 / 937] FPS: 19.5 (19.8)  ,  DataTime: 0.026 (0.053)  ,  ForwardTime: 1.564  ,  TotalTime: 1.644  ,  Loss/total: 1.27036  ,  Loss/giou: 0.31270  ,  Loss/l1: 0.03215  ,  Loss/location: 0.48421  ,  IoU: 0.72053
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000020.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 2, 200 / 937] FPS: 19.5 (20.2)  ,  DataTime: 0.022 (0.053)  ,  ForwardTime: 1.564  ,  TotalTime: 1.638  ,  Loss/total: 1.25616  ,  Loss/giou: 0.30813  ,  Loss/l1: 0.03140  ,  Loss/location: 0.48288  ,  IoU: 0.72441
+[train: 2, 200 / 937] FPS: 19.5 (20.1)  ,  DataTime: 0.021 (0.053)  ,  ForwardTime: 1.563  ,  TotalTime: 1.638  ,  Loss/total: 1.23175  ,  Loss/giou: 0.30163  ,  Loss/l1: 0.02999  ,  Loss/location: 0.47856  ,  IoU: 0.72904
+[train: 2, 250 / 937] FPS: 19.5 (19.6)  ,  DataTime: 0.019 (0.054)  ,  ForwardTime: 1.565  ,  TotalTime: 1.638  ,  Loss/total: 1.24997  ,  Loss/giou: 0.30644  ,  Loss/l1: 0.03115  ,  Loss/location: 0.48133  ,  IoU: 0.72582
+[train: 2, 250 / 937] FPS: 19.5 (19.6)  ,  DataTime: 0.019 (0.054)  ,  ForwardTime: 1.565  ,  TotalTime: 1.638  ,  Loss/total: 1.22114  ,  Loss/giou: 0.29928  ,  Loss/l1: 0.02959  ,  Loss/location: 0.47461  ,  IoU: 0.73072
+[train: 2, 300 / 937] FPS: 19.5 (19.5)  ,  DataTime: 0.017 (0.054)  ,  ForwardTime: 1.566  ,  TotalTime: 1.637  ,  Loss/total: 1.25052  ,  Loss/giou: 0.30564  ,  Loss/l1: 0.03099  ,  Loss/location: 0.48430  ,  IoU: 0.72630
+[train: 2, 300 / 937] FPS: 19.5 (19.5)  ,  DataTime: 0.017 (0.055)  ,  ForwardTime: 1.565  ,  TotalTime: 1.637  ,  Loss/total: 1.23169  ,  Loss/giou: 0.30134  ,  Loss/l1: 0.02989  ,  Loss/location: 0.47956  ,  IoU: 0.72899
+[train: 2, 350 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.016 (0.055)  ,  ForwardTime: 1.566  ,  TotalTime: 1.637  ,  Loss/total: 1.23540  ,  Loss/giou: 0.30231  ,  Loss/l1: 0.03010  ,  Loss/location: 0.48029  ,  IoU: 0.72852
+[train: 2, 350 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.016 (0.055)  ,  ForwardTime: 1.566  ,  TotalTime: 1.637  ,  Loss/total: 1.25071  ,  Loss/giou: 0.30589  ,  Loss/l1: 0.03093  ,  Loss/location: 0.48429  ,  IoU: 0.72608
+[train: 2, 400 / 937] FPS: 19.5 (20.1)  ,  DataTime: 0.015 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.637  ,  Loss/total: 1.23455  ,  Loss/giou: 0.30239  ,  Loss/l1: 0.03016  ,  Loss/location: 0.47898  ,  IoU: 0.72854
+[train: 2, 400 / 937] FPS: 19.5 (19.7)  ,  DataTime: 0.015 (0.055)  ,  ForwardTime: 1.567  ,  TotalTime: 1.637  ,  Loss/total: 1.24983  ,  Loss/giou: 0.30553  ,  Loss/l1: 0.03076  ,  Loss/location: 0.48495  ,  IoU: 0.72620
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000018.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000018.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 2, 450 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.014 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.636  ,  Loss/total: 1.23015  ,  Loss/giou: 0.30164  ,  Loss/l1: 0.03010  ,  Loss/location: 0.47638  ,  IoU: 0.72924
+[train: 2, 450 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.014 (0.055)  ,  ForwardTime: 1.567  ,  TotalTime: 1.636  ,  Loss/total: 1.24453  ,  Loss/giou: 0.30443  ,  Loss/l1: 0.03060  ,  Loss/location: 0.48266  ,  IoU: 0.72708
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000019.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 2, 500 / 937] FPS: 19.6 (19.3)  ,  DataTime: 0.013 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.636  ,  Loss/total: 1.23058  ,  Loss/giou: 0.30199  ,  Loss/l1: 0.03015  ,  Loss/location: 0.47586  ,  IoU: 0.72904
+[train: 2, 500 / 937] FPS: 19.6 (19.2)  ,  DataTime: 0.013 (0.055)  ,  ForwardTime: 1.567  ,  TotalTime: 1.636  ,  Loss/total: 1.24040  ,  Loss/giou: 0.30378  ,  Loss/l1: 0.03045  ,  Loss/location: 0.48061  ,  IoU: 0.72735
+[train: 2, 550 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.013 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.635  ,  Loss/total: 1.23048  ,  Loss/giou: 0.30220  ,  Loss/l1: 0.03011  ,  Loss/location: 0.47551  ,  IoU: 0.72868
+[train: 2, 550 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.013 (0.056)  ,  ForwardTime: 1.567  ,  TotalTime: 1.635  ,  Loss/total: 1.23807  ,  Loss/giou: 0.30323  ,  Loss/l1: 0.03035  ,  Loss/location: 0.47988  ,  IoU: 0.72777
+[train: 2, 600 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23303  ,  Loss/giou: 0.30202  ,  Loss/l1: 0.03021  ,  Loss/location: 0.47795  ,  IoU: 0.72876
+[train: 2, 600 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.22742  ,  Loss/giou: 0.30168  ,  Loss/l1: 0.02999  ,  Loss/location: 0.47410  ,  IoU: 0.72898
+[train: 2, 650 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.22916  ,  Loss/giou: 0.30211  ,  Loss/l1: 0.02998  ,  Loss/location: 0.47504  ,  IoU: 0.72854
+[train: 2, 650 / 937] FPS: 19.6 (19.0)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23119  ,  Loss/giou: 0.30166  ,  Loss/l1: 0.03008  ,  Loss/location: 0.47746  ,  IoU: 0.72901
+[train: 2, 700 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23289  ,  Loss/giou: 0.30308  ,  Loss/l1: 0.03019  ,  Loss/location: 0.47578  ,  IoU: 0.72787
+[train: 2, 700 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23021  ,  Loss/giou: 0.30140  ,  Loss/l1: 0.03003  ,  Loss/location: 0.47724  ,  IoU: 0.72914
+[train: 2, 750 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.565  ,  TotalTime: 1.633  ,  Loss/total: 1.23366  ,  Loss/giou: 0.30221  ,  Loss/l1: 0.03017  ,  Loss/location: 0.47840  ,  IoU: 0.72857
+[train: 2, 750 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.633  ,  Loss/total: 1.23315  ,  Loss/giou: 0.30297  ,  Loss/l1: 0.03018  ,  Loss/location: 0.47634  ,  IoU: 0.72791
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000019.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 2, 800 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23319  ,  Loss/giou: 0.30273  ,  Loss/l1: 0.03015  ,  Loss/location: 0.47698  ,  IoU: 0.72813
+[train: 2, 800 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.011 (0.057)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.23264  ,  Loss/giou: 0.30171  ,  Loss/l1: 0.03011  ,  Loss/location: 0.47865  ,  IoU: 0.72890
+[train: 2, 850 / 937] FPS: 19.6 (19.6)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.634  ,  Loss/total: 1.22928  ,  Loss/giou: 0.30166  ,  Loss/l1: 0.03000  ,  Loss/location: 0.47595  ,  IoU: 0.72887
+[train: 2, 850 / 937] FPS: 19.6 (19.3)  ,  DataTime: 0.011 (0.057)  ,  ForwardTime: 1.565  ,  TotalTime: 1.634  ,  Loss/total: 1.23013  ,  Loss/giou: 0.30100  ,  Loss/l1: 0.03004  ,  Loss/location: 0.47791  ,  IoU: 0.72946
+[train: 2, 900 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.633  ,  Loss/total: 1.22533  ,  Loss/giou: 0.30049  ,  Loss/l1: 0.02983  ,  Loss/location: 0.47519  ,  IoU: 0.72978
+[train: 2, 900 / 937] FPS: 19.6 (19.3)  ,  DataTime: 0.011 (0.057)  ,  ForwardTime: 1.565  ,  TotalTime: 1.633  ,  Loss/total: 1.22694  ,  Loss/giou: 0.30003  ,  Loss/l1: 0.02987  ,  Loss/location: 0.47753  ,  IoU: 0.73017
+[train: 2, 937 / 937] FPS: 19.6 (19.0)  ,  DataTime: 0.011 (0.057)  ,  ForwardTime: 1.565  ,  TotalTime: 1.633  ,  Loss/total: 1.22342  ,  Loss/giou: 0.29910  ,  Loss/l1: 0.02973  ,  Loss/location: 0.47659  ,  IoU: 0.73088
+[train: 2, 937 / 937] FPS: 19.6 (19.5)  ,  DataTime: 0.011 (0.057)  ,  ForwardTime: 1.566  ,  TotalTime: 1.633  ,  Loss/total: 1.22612  ,  Loss/giou: 0.30038  ,  Loss/l1: 0.02981  ,  Loss/location: 0.47633  ,  IoU: 0.72982
+Epoch Time: 0:25:30.286877
+Avg Data Time: 0.01083
+Avg GPU Trans Time: 0.05713
+Avg Forward Time: 1.56521
+Epoch Time: 0:25:30.298086
+Avg Data Time: 0.01073
+Avg GPU Trans Time: 0.05654
+Avg Forward Time: 1.56592
+[train: 3, 50 / 937] FPS: 18.9 (19.7)  ,  DataTime: 0.067 (0.054)  ,  ForwardTime: 1.568  ,  TotalTime: 1.689  ,  Loss/total: 1.17412  ,  Loss/giou: 0.28912  ,  Loss/l1: 0.02820  ,  Loss/location: 0.45487  ,  IoU: 0.73953
+[train: 3, 50 / 937] FPS: 19.0 (19.7)  ,  DataTime: 0.060 (0.058)  ,  ForwardTime: 1.570  ,  TotalTime: 1.688  ,  Loss/total: 1.15403  ,  Loss/giou: 0.28205  ,  Loss/l1: 0.02745  ,  Loss/location: 0.45270  ,  IoU: 0.74553
+[train: 3, 100 / 937] FPS: 19.3 (19.9)  ,  DataTime: 0.037 (0.054)  ,  ForwardTime: 1.565  ,  TotalTime: 1.656  ,  Loss/total: 1.14673  ,  Loss/giou: 0.28305  ,  Loss/l1: 0.02744  ,  Loss/location: 0.44340  ,  IoU: 0.74411
+[train: 3, 100 / 937] FPS: 19.3 (19.9)  ,  DataTime: 0.034 (0.056)  ,  ForwardTime: 1.566  ,  TotalTime: 1.656  ,  Loss/total: 1.19402  ,  Loss/giou: 0.29221  ,  Loss/l1: 0.02946  ,  Loss/location: 0.46231  ,  IoU: 0.73771
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000019.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 3, 150 / 937] FPS: 19.4 (19.7)  ,  DataTime: 0.026 (0.057)  ,  ForwardTime: 1.566  ,  TotalTime: 1.649  ,  Loss/total: 1.19640  ,  Loss/giou: 0.29338  ,  Loss/l1: 0.02951  ,  Loss/location: 0.46208  ,  IoU: 0.73672
+[train: 3, 150 / 937] FPS: 19.4 (19.3)  ,  DataTime: 0.027 (0.053)  ,  ForwardTime: 1.569  ,  TotalTime: 1.650  ,  Loss/total: 1.16043  ,  Loss/giou: 0.28621  ,  Loss/l1: 0.02793  ,  Loss/location: 0.44834  ,  IoU: 0.74128
+[train: 3, 200 / 937] FPS: 19.5 (19.5)  ,  DataTime: 0.022 (0.054)  ,  ForwardTime: 1.569  ,  TotalTime: 1.645  ,  Loss/total: 1.18213  ,  Loss/giou: 0.29019  ,  Loss/l1: 0.02854  ,  Loss/location: 0.45907  ,  IoU: 0.73794
+[train: 3, 200 / 937] FPS: 19.5 (19.6)  ,  DataTime: 0.021 (0.058)  ,  ForwardTime: 1.566  ,  TotalTime: 1.645  ,  Loss/total: 1.21316  ,  Loss/giou: 0.29736  ,  Loss/l1: 0.03003  ,  Loss/location: 0.46830  ,  IoU: 0.73309
+[train: 3, 250 / 937] FPS: 19.5 (19.8)  ,  DataTime: 0.019 (0.058)  ,  ForwardTime: 1.565  ,  TotalTime: 1.642  ,  Loss/total: 1.21060  ,  Loss/giou: 0.29635  ,  Loss/l1: 0.02977  ,  Loss/location: 0.46905  ,  IoU: 0.73375
+[train: 3, 250 / 937] FPS: 19.5 (19.7)  ,  DataTime: 0.020 (0.054)  ,  ForwardTime: 1.568  ,  TotalTime: 1.642  ,  Loss/total: 1.18128  ,  Loss/giou: 0.28977  ,  Loss/l1: 0.02866  ,  Loss/location: 0.45843  ,  IoU: 0.73844
+[train: 3, 300 / 937] FPS: 19.5 (19.9)  ,  DataTime: 0.018 (0.054)  ,  ForwardTime: 1.567  ,  TotalTime: 1.639  ,  Loss/total: 1.18050  ,  Loss/giou: 0.28945  ,  Loss/l1: 0.02858  ,  Loss/location: 0.45872  ,  IoU: 0.73875
+[train: 3, 300 / 937] FPS: 19.5 (19.2)  ,  DataTime: 0.017 (0.058)  ,  ForwardTime: 1.565  ,  TotalTime: 1.639  ,  Loss/total: 1.20824  ,  Loss/giou: 0.29583  ,  Loss/l1: 0.02950  ,  Loss/location: 0.46908  ,  IoU: 0.73398
+[train: 3, 350 / 937] FPS: 19.5 (19.6)  ,  DataTime: 0.016 (0.054)  ,  ForwardTime: 1.567  ,  TotalTime: 1.637  ,  Loss/total: 1.18465  ,  Loss/giou: 0.29048  ,  Loss/l1: 0.02863  ,  Loss/location: 0.46052  ,  IoU: 0.73770
+[train: 3, 350 / 937] FPS: 19.5 (19.5)  ,  DataTime: 0.016 (0.058)  ,  ForwardTime: 1.564  ,  TotalTime: 1.637  ,  Loss/total: 1.20925  ,  Loss/giou: 0.29638  ,  Loss/l1: 0.02936  ,  Loss/location: 0.46967  ,  IoU: 0.73321
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000020.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 3, 400 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.015 (0.058)  ,  ForwardTime: 1.564  ,  TotalTime: 1.636  ,  Loss/total: 1.20535  ,  Loss/giou: 0.29544  ,  Loss/l1: 0.02920  ,  Loss/location: 0.46850  ,  IoU: 0.73373
+[train: 3, 400 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.015 (0.055)  ,  ForwardTime: 1.567  ,  TotalTime: 1.636  ,  Loss/total: 1.17385  ,  Loss/giou: 0.28842  ,  Loss/l1: 0.02830  ,  Loss/location: 0.45552  ,  IoU: 0.73931
+[train: 3, 450 / 937] FPS: 19.6 (19.1)  ,  DataTime: 0.014 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.637  ,  Loss/total: 1.17967  ,  Loss/giou: 0.28978  ,  Loss/l1: 0.02853  ,  Loss/location: 0.45746  ,  IoU: 0.73828
+[train: 3, 450 / 937] FPS: 19.6 (19.6)  ,  DataTime: 0.014 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.637  ,  Loss/total: 1.20109  ,  Loss/giou: 0.29450  ,  Loss/l1: 0.02903  ,  Loss/location: 0.46693  ,  IoU: 0.73447
+[train: 3, 500 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.013 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.637  ,  Loss/total: 1.19626  ,  Loss/giou: 0.29358  ,  Loss/l1: 0.02888  ,  Loss/location: 0.46469  ,  IoU: 0.73527
+[train: 3, 500 / 937] FPS: 19.6 (19.6)  ,  DataTime: 0.014 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.637  ,  Loss/total: 1.18423  ,  Loss/giou: 0.29135  ,  Loss/l1: 0.02869  ,  Loss/location: 0.45809  ,  IoU: 0.73706
+[train: 3, 550 / 937] FPS: 19.6 (19.6)  ,  DataTime: 0.013 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.636  ,  Loss/total: 1.18589  ,  Loss/giou: 0.29169  ,  Loss/l1: 0.02872  ,  Loss/location: 0.45889  ,  IoU: 0.73673
+[train: 3, 550 / 937] FPS: 19.6 (19.4)  ,  DataTime: 0.013 (0.059)  ,  ForwardTime: 1.565  ,  TotalTime: 1.636  ,  Loss/total: 1.19399  ,  Loss/giou: 0.29282  ,  Loss/l1: 0.02888  ,  Loss/location: 0.46396  ,  IoU: 0.73601
+[train: 3, 600 / 937] FPS: 19.6 (19.7)  ,  DataTime: 0.013 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.636  ,  Loss/total: 1.18521  ,  Loss/giou: 0.29135  ,  Loss/l1: 0.02871  ,  Loss/location: 0.45899  ,  IoU: 0.73709
+[train: 3, 600 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.013 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.636  ,  Loss/total: 1.18860  ,  Loss/giou: 0.29128  ,  Loss/l1: 0.02863  ,  Loss/location: 0.46290  ,  IoU: 0.73714
+[train: 3, 650 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.012 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.18820  ,  Loss/giou: 0.29201  ,  Loss/l1: 0.02880  ,  Loss/location: 0.46018  ,  IoU: 0.73662
+[train: 3, 650 / 937] FPS: 19.6 (19.4)  ,  DataTime: 0.012 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18816  ,  Loss/giou: 0.29093  ,  Loss/l1: 0.02861  ,  Loss/location: 0.46328  ,  IoU: 0.73744
+[train: 3, 700 / 937] FPS: 19.6 (19.5)  ,  DataTime: 0.012 (0.055)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.18659  ,  Loss/giou: 0.29161  ,  Loss/l1: 0.02869  ,  Loss/location: 0.45992  ,  IoU: 0.73677
+[train: 3, 700 / 937] FPS: 19.6 (19.4)  ,  DataTime: 0.012 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18947  ,  Loss/giou: 0.29130  ,  Loss/l1: 0.02867  ,  Loss/location: 0.46352  ,  IoU: 0.73717
+[train: 3, 750 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.012 (0.056)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.18916  ,  Loss/giou: 0.29214  ,  Loss/l1: 0.02873  ,  Loss/location: 0.46122  ,  IoU: 0.73628
+[train: 3, 750 / 937] FPS: 19.6 (19.7)  ,  DataTime: 0.012 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18836  ,  Loss/giou: 0.29096  ,  Loss/l1: 0.02859  ,  Loss/location: 0.46347  ,  IoU: 0.73731
+[train: 3, 800 / 937] FPS: 19.6 (19.4)  ,  DataTime: 0.012 (0.060)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18403  ,  Loss/giou: 0.29024  ,  Loss/l1: 0.02849  ,  Loss/location: 0.46108  ,  IoU: 0.73780
+[train: 3, 800 / 937] FPS: 19.6 (19.2)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.18664  ,  Loss/giou: 0.29141  ,  Loss/l1: 0.02863  ,  Loss/location: 0.46067  ,  IoU: 0.73683
+[train: 3, 850 / 937] FPS: 19.6 (19.5)  ,  DataTime: 0.011 (0.060)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18232  ,  Loss/giou: 0.28966  ,  Loss/l1: 0.02849  ,  Loss/location: 0.46053  ,  IoU: 0.73835
+[train: 3, 850 / 937] FPS: 19.6 (19.7)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.18479  ,  Loss/giou: 0.29087  ,  Loss/l1: 0.02857  ,  Loss/location: 0.46023  ,  IoU: 0.73724
+[train: 3, 900 / 937] FPS: 19.6 (20.2)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.17991  ,  Loss/giou: 0.28984  ,  Loss/l1: 0.02835  ,  Loss/location: 0.45851  ,  IoU: 0.73788
+[train: 3, 900 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.011 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18002  ,  Loss/giou: 0.28925  ,  Loss/l1: 0.02845  ,  Loss/location: 0.45928  ,  IoU: 0.73868
+[train: 3, 937 / 937] FPS: 19.6 (18.8)  ,  DataTime: 0.011 (0.056)  ,  ForwardTime: 1.568  ,  TotalTime: 1.635  ,  Loss/total: 1.17757  ,  Loss/giou: 0.28934  ,  Loss/l1: 0.02828  ,  Loss/location: 0.45750  ,  IoU: 0.73826
+[train: 3, 937 / 937] FPS: 19.6 (19.1)  ,  DataTime: 0.011 (0.059)  ,  ForwardTime: 1.564  ,  TotalTime: 1.635  ,  Loss/total: 1.18129  ,  Loss/giou: 0.28949  ,  Loss/l1: 0.02851  ,  Loss/location: 0.45974  ,  IoU: 0.73860
+Epoch Time: 0:25:31.606472
+Avg Data Time: 0.01089
+Avg GPU Trans Time: 0.05585
+Avg Forward Time: 1.56785
+Epoch Time: 0:25:31.591089
+Avg Data Time: 0.01111
+Avg GPU Trans Time: 0.05920
+Avg Forward Time: 1.56426
+[train: 4, 50 / 937] FPS: 18.5 (19.8)  ,  DataTime: 0.112 (0.056)  ,  ForwardTime: 1.561  ,  TotalTime: 1.729  ,  Loss/total: 1.17572  ,  Loss/giou: 0.29188  ,  Loss/l1: 0.02913  ,  Loss/location: 0.44633  ,  IoU: 0.73791
+[train: 4, 50 / 937] FPS: 18.5 (20.0)  ,  DataTime: 0.112 (0.052)  ,  ForwardTime: 1.565  ,  TotalTime: 1.730  ,  Loss/total: 1.13668  ,  Loss/giou: 0.28103  ,  Loss/l1: 0.02765  ,  Loss/location: 0.43637  ,  IoU: 0.74685
+[train: 4, 100 / 937] FPS: 19.0 (19.5)  ,  DataTime: 0.060 (0.052)  ,  ForwardTime: 1.568  ,  TotalTime: 1.680  ,  Loss/total: 1.14154  ,  Loss/giou: 0.28111  ,  Loss/l1: 0.02744  ,  Loss/location: 0.44212  ,  IoU: 0.74595
+[train: 4, 100 / 937] FPS: 19.0 (19.6)  ,  DataTime: 0.060 (0.056)  ,  ForwardTime: 1.564  ,  TotalTime: 1.680  ,  Loss/total: 1.16563  ,  Loss/giou: 0.28953  ,  Loss/l1: 0.02877  ,  Loss/location: 0.44274  ,  IoU: 0.73991
+[train: 4, 150 / 937] FPS: 19.3 (20.1)  ,  DataTime: 0.043 (0.052)  ,  ForwardTime: 1.567  ,  TotalTime: 1.661  ,  Loss/total: 1.13557  ,  Loss/giou: 0.27951  ,  Loss/l1: 0.02712  ,  Loss/location: 0.44093  ,  IoU: 0.74665
+[train: 4, 150 / 937] FPS: 19.3 (19.6)  ,  DataTime: 0.043 (0.055)  ,  ForwardTime: 1.564  ,  TotalTime: 1.661  ,  Loss/total: 1.16798  ,  Loss/giou: 0.28872  ,  Loss/l1: 0.02858  ,  Loss/location: 0.44763  ,  IoU: 0.74055
+[train: 4, 200 / 937] FPS: 19.4 (19.9)  ,  DataTime: 0.034 (0.054)  ,  ForwardTime: 1.562  ,  TotalTime: 1.650  ,  Loss/total: 1.16327  ,  Loss/giou: 0.28674  ,  Loss/l1: 0.02863  ,  Loss/location: 0.44660  ,  IoU: 0.74257
+[train: 4, 200 / 937] FPS: 19.4 (19.6)  ,  DataTime: 0.034 (0.050)  ,  ForwardTime: 1.566  ,  TotalTime: 1.650  ,  Loss/total: 1.13824  ,  Loss/giou: 0.28035  ,  Loss/l1: 0.02717  ,  Loss/location: 0.44168  ,  IoU: 0.74589
+[train: 4, 250 / 937] FPS: 19.5 (20.0)  ,  DataTime: 0.029 (0.050)  ,  ForwardTime: 1.564  ,  TotalTime: 1.643  ,  Loss/total: 1.14902  ,  Loss/giou: 0.28273  ,  Loss/l1: 0.02746  ,  Loss/location: 0.44625  ,  IoU: 0.74425
+[train: 4, 250 / 937] FPS: 19.5 (19.8)  ,  DataTime: 0.029 (0.053)  ,  ForwardTime: 1.561  ,  TotalTime: 1.643  ,  Loss/total: 1.15794  ,  Loss/giou: 0.28393  ,  Loss/l1: 0.02801  ,  Loss/location: 0.45002  ,  IoU: 0.74402
+[train: 4, 300 / 937] FPS: 19.5 (19.9)  ,  DataTime: 0.025 (0.053)  ,  ForwardTime: 1.560  ,  TotalTime: 1.639  ,  Loss/total: 1.15718  ,  Loss/giou: 0.28368  ,  Loss/l1: 0.02777  ,  Loss/location: 0.45099  ,  IoU: 0.74366
+[train: 4, 300 / 937] FPS: 19.5 (19.8)  ,  DataTime: 0.025 (0.050)  ,  ForwardTime: 1.564  ,  TotalTime: 1.639  ,  Loss/total: 1.13610  ,  Loss/giou: 0.27962  ,  Loss/l1: 0.02708  ,  Loss/location: 0.44146  ,  IoU: 0.74679
+[train: 4, 350 / 937] FPS: 19.6 (19.8)  ,  DataTime: 0.023 (0.053)  ,  ForwardTime: 1.561  ,  TotalTime: 1.636  ,  Loss/total: 1.15249  ,  Loss/giou: 0.28241  ,  Loss/l1: 0.02750  ,  Loss/location: 0.45019  ,  IoU: 0.74453
+[train: 4, 350 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.023 (0.050)  ,  ForwardTime: 1.564  ,  TotalTime: 1.636  ,  Loss/total: 1.12930  ,  Loss/giou: 0.27768  ,  Loss/l1: 0.02664  ,  Loss/location: 0.44076  ,  IoU: 0.74790
+[train: 4, 400 / 937] FPS: 19.6 (19.9)  ,  DataTime: 0.021 (0.052)  ,  ForwardTime: 1.562  ,  TotalTime: 1.635  ,  Loss/total: 1.15330  ,  Loss/giou: 0.28268  ,  Loss/l1: 0.02747  ,  Loss/location: 0.45061  ,  IoU: 0.74426
+[train: 4, 400 / 937] FPS: 19.6 (19.6)  ,  DataTime: 0.021 (0.050)  ,  ForwardTime: 1.565  ,  TotalTime: 1.635  ,  Loss/total: 1.12912  ,  Loss/giou: 0.27755  ,  Loss/l1: 0.02660  ,  Loss/location: 0.44102  ,  IoU: 0.74787
+[train: 4, 450 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.020 (0.052)  ,  ForwardTime: 1.561  ,  TotalTime: 1.633  ,  Loss/total: 1.14846  ,  Loss/giou: 0.28165  ,  Loss/l1: 0.02734  ,  Loss/location: 0.44848  ,  IoU: 0.74512
+[train: 4, 450 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.019 (0.049)  ,  ForwardTime: 1.565  ,  TotalTime: 1.633  ,  Loss/total: 1.12810  ,  Loss/giou: 0.27676  ,  Loss/l1: 0.02649  ,  Loss/location: 0.44215  ,  IoU: 0.74854
+[train: 4, 500 / 937] FPS: 19.6 (20.1)  ,  DataTime: 0.018 (0.052)  ,  ForwardTime: 1.561  ,  TotalTime: 1.632  ,  Loss/total: 1.14857  ,  Loss/giou: 0.28221  ,  Loss/l1: 0.02739  ,  Loss/location: 0.44720  ,  IoU: 0.74470
+[train: 4, 500 / 937] FPS: 19.6 (20.0)  ,  DataTime: 0.018 (0.049)  ,  ForwardTime: 1.564  ,  TotalTime: 1.632  ,  Loss/total: 1.12910  ,  Loss/giou: 0.27731  ,  Loss/l1: 0.02655  ,  Loss/location: 0.44171  ,  IoU: 0.74813
+[train: 4, 550 / 937] FPS: 19.6 (19.5)  ,  DataTime: 0.017 (0.049)  ,  ForwardTime: 1.564  ,  TotalTime: 1.630  ,  Loss/total: 1.12958  ,  Loss/giou: 0.27742  ,  Loss/l1: 0.02648  ,  Loss/location: 0.44232  ,  IoU: 0.74781
+[train: 4, 550 / 937] FPS: 19.6 (19.7)  ,  DataTime: 0.017 (0.052)  ,  ForwardTime: 1.561  ,  TotalTime: 1.630  ,  Loss/total: 1.15116  ,  Loss/giou: 0.28281  ,  Loss/l1: 0.02745  ,  Loss/location: 0.44827  ,  IoU: 0.74415
+ERROR: Could not read image "/home/hanpenghui/sxy/data/lasher/trainingset/blueboy85/visible/v000018.jpg"
+OpenCV(4.11.0) /io/opencv/modules/imgproc/src/color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
+[train: 4, 600 / 937] FPS: 19.7 (19.9)  ,  DataTime: 0.016 (0.049)  ,  ForwardTime: 1.563  ,  TotalTime: 1.628  ,  Loss/total: 1.12969  ,  Loss/giou: 0.27785  ,  Loss/l1: 0.02657  ,  Loss/location: 0.44114  ,  IoU: 0.74759
+[train: 4, 600 / 937] FPS: 19.7 (19.8)  ,  DataTime: 0.017 (0.051)  ,  ForwardTime: 1.560  ,  TotalTime: 1.628  ,  Loss/total: 1.14833  ,  Loss/giou: 0.28217  ,  Loss/l1: 0.02742  ,  Loss/location: 0.44691  ,  IoU: 0.74464
+WARNING:torch.distributed.elastic.agent.server.api:Received 1 death signal, shutting down workers
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 32447 closing signal SIGHUP
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 32448 closing signal SIGHUP
+Traceback (most recent call last):
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launch.py", line 193, in <module>
+    main()
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launch.py", line 189, in main
+    launch(args)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launch.py", line 174, in launch
+    run(args)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/run.py", line 689, in run
+    elastic_launch(
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 252, in launch_agent
+    result = agent.run()
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = self._invoke_run(role)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 843, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/hanpenghui/miniconda3/envs/pyname/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 32381 got signal: 1
