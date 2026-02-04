@@ -1,6 +1,4 @@
-# TBSI for RGB-T Tracking
-
-Implementation of the paper [Bridging Search Region Interaction With Template for RGB-T Tracking](https://openaccess.thecvf.com/content/CVPR2023/papers/Hui_Bridging_Search_Region_Interaction_With_Template_for_RGB-T_Tracking_CVPR_2023_paper.pdf), CVPR 2023.
+# PMFNet for RGB-T Tracking
 
 ## Environment Installation
 ```
@@ -61,15 +59,3 @@ TBSI | ViT-Base | SOT |   70.5    | 66.5 | 56.5 | 36.2 | [download](https://pan.
 ## Acknowledgments
 Our project is developed upon [OSTrack](https://github.com/botaoye/OSTrack). Thanks for their contributions which help us to quickly implement our ideas.
 
-## Citation
-If our work is useful for your research, please consider cite:
-
-```
-@inproceedings{hui2023bridging,
-  title={Bridging Search Region Interaction With Template for RGB-T Tracking},
-  author={Hui, Tianrui and Xun, Zizheng and Peng, Fengguang and Huang, Junshi and Wei, Xiaoming and Wei, Xiaolin and Dai, Jiao and Han, Jizhong and Liu, Si},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={13630--13639},
-  year={2023}
-}
-```
