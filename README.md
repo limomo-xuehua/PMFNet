@@ -59,3 +59,8 @@ TBSI | ViT-Base | SOT |   70.5    | 66.5 | 56.5 | 36.2 | [download](https://pan.
 ## Acknowledgments
 Our project is developed upon [OSTrack](https://github.com/botaoye/OSTrack). Thanks for their contributions which help us to quickly implement our ideas.
 
+# PMFNet: 跨模态RGB-T目标跟踪框架
+This code is the official implementation of the paper submitted to **The Visual Computer** (《视觉计算机》) titled "PMFNet: Collaborative Prompt Enhancement and Dynamic Fusion for Robust RGB-Thermal Tracking".
+
+## 论文信息
+- Journal: The Visual Computer
