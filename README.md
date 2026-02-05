@@ -1,4 +1,15 @@
 # PMFNet for RGB-T Tracking
+📢 关于本代码库与学术论文的关联
+本代码是投稿至期刊 The Visual Computer 的学术论文 “PMFNet: Collaborative Prompt Enhancement and Dynamic Fusion for Robust RGB-Thermal Tracking” 的官方实现。
+如果您使用了本代码或其中的部分，请务必引用我们的论文。
+
+@article{pmfnet2025visualcomputer,
+  title={PMFNet: Collaborative Prompt Enhancement and Dynamic Fusion for Robust RGB-Thermal Tracking},
+  author={Cao, Jie and Feng, Xue and Liang, Haopeng},
+  journal={The Visual Computer (Submitted)},
+  year={2025},
+  note={Under Review. Corresponding author: Haopeng Liang (email: 20240022@lut.edu.cn)}
+}
 
 ## Environment Installation
 ```
